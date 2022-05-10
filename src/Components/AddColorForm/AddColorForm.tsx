@@ -8,6 +8,8 @@ interface State {
     showInfo: boolean;
 }
 
+type colorList = string[] | null;
+
 class AddColorForm extends Component {
     state: State = {
         color: '',
@@ -38,6 +40,25 @@ class AddColorForm extends Component {
             this.setState({ showInfo: true });
             return;
         }
+
+        let oldColorList: string | null = localStorage.getItem('colorList');
+
+        if (typeof oldColorList === 'string') {
+            //if there are some colors already saved
+            const newColorList = [
+                ...JSON.parse(oldColorList),
+                this.state.color,
+            ];
+            this.saveColorList(newColorList);
+            return;
+        }
+
+        this.saveColorList([this.state.color]);
+    };
+
+    saveColorList = (colorList: colorList) => {
+        localStorage.setItem('colorList', JSON.stringify(colorList));
+        window.dispatchEvent(new Event('storage'));
         this.setState({ showInfo: false, color: '' });
     };
 
