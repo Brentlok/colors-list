@@ -25,6 +25,38 @@ const ColorListForm: React.FC = () => {
         return colorList;
     };
 
+    const orderColors = (colors: string[]): string[] => {
+        const compare = (colorA: string, colorB: string) => {
+            const redA = parseInt(colorA.slice(1, 3), 16);
+            const redB = parseInt(colorB.slice(1, 3), 16);
+            if (redA > redB) {
+                return -1;
+            }
+            if (redA < redB) {
+                return 1;
+            }
+            const greenA = parseInt(colorA.slice(3, 5), 16);
+            const greenB = parseInt(colorB.slice(3, 5), 16);
+            if (greenA > greenB) {
+                return -1;
+            }
+            if (greenA < greenB) {
+                return 1;
+            }
+            const blueA = parseInt(colorA.slice(5, 7), 16);
+            const blueB = parseInt(colorB.slice(5, 7), 16);
+            if (blueA > blueB) {
+                return -1;
+            }
+            if (blueA < blueB) {
+                return 1;
+            }
+            return 0;
+        };
+        colors.sort(compare);
+        return colors;
+    };
+
     const updateColors: () => void = () => {
         const storedColorList: string | null =
             localStorage.getItem('colorList');
@@ -36,6 +68,7 @@ const ColorListForm: React.FC = () => {
             ];
             const colorListSet: Set<string> = new Set(newColorList);
             const filteredColors = filterColors(colorListSet);
+            orderColors(filteredColors);
             setColorList(filteredColors);
         }
     };
