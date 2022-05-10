@@ -8,7 +8,7 @@ interface Props {
 
 const Input: React.FC<Props> = ({ placeholder, value, onChange }) => (
     <input
-        className="input"
+        className="input border"
         placeholder={placeholder}
         value={value}
         onChange={onChange}

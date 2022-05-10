@@ -1,8 +1,10 @@
-import AddColor from './Components/AddColor';
+import AddColor from './Components/AddColorForm';
+import ColorList from './Components/ColorListForm';
 
 const App: React.FC = () => (
-    <main>
+    <main className="border">
         <AddColor />
+        <ColorList />
     </main>
 );
 

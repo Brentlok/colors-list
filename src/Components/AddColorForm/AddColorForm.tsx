@@ -8,7 +8,7 @@ interface State {
     showInfo: boolean;
 }
 
-class AddColor extends Component {
+class AddColorForm extends Component {
     state: State = {
         color: '',
         showInfo: false,
@@ -58,4 +58,4 @@ class AddColor extends Component {
     }
 }
 
-export default AddColor;
+export default AddColorForm;
