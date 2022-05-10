@@ -1,7 +1,9 @@
-import Input from './Components/Input';
+import AddColor from './Components/AddColor';
 
-const App: React.FC = () => {
-    return <Input placeholder="#FFFFFF" value="" onChange={() => {}} />;
-};
+const App: React.FC = () => (
+    <main>
+        <AddColor />
+    </main>
+);
 
 export default App;
